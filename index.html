@@ -3,163 +3,372 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Шиловский Максим — QA Engineer</title>
-    <link rel="stylesheet" href="style.css?v=1">
-    <!-- ИДЕЯ ДЛЯ УЛУЧШЕНИЯ: Добавить FontAwesome для иконок контактов и стек-технологий -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Максим Шиловский | Junior QA Engineer</title>
+    <style>
+        :root {
+            --bg-color: #0b0f17;
+            --card-bg: #121824;
+            --accent-color: #2ecc71; /* Фирменный зелёный цвет проекта Джуны */
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: #1f293d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Шапка / Профиль */
+        .profile-card {
+            background: linear-gradient(135deg, #121824 0%, #0d131f 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .profile-avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+            box-shadow: 0 0 20px rgba(46, 204, 113, 0.3);
+        }
+
+        .profile-info h1 {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .profile-info .subtitle {
+            color: var(--accent-color);
+            font-size: 1.25rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .profile-info .bio {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 700px;
+        }
+
+        /* Заголовки разделов */
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        h2::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 24px;
+            background-color: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        /* Технологический стек */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
+        }
+
+        /* Опыт и обучение */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .timeline-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            position: relative;
+        }
+
+        .timeline-badge {
+            background-color: rgba(46, 204, 113, 0.15);
+            color: var(--accent-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .timeline-company {
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        /* Галерея сертификатов */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .cert-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .cert-card:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            border-color: rgba(46, 204, 113, 0.5);
+        }
+
+        .cert-img-wrapper {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background-color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cert-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .cert-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .cert-title {
+            padding: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Модальное окно для просмотра документов */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .profile-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 25px;
+            }
+            .profile-avatar {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header class="header">
-        <div class="container header-container">
-            <div class="profile-main">
-                <!-- ФОРМАТ РАСШИРЕНИЯ ИЗМЕНЕН НА БОЛЬШИЕ БУКВЫ .JPG -->
-                <img src="avatar.png" alt="Шиловский Максим" class="avatar">
-                <div class="profile-info">
-                    <h1>Шиловский Максим Витальевич</h1>
-                    <p class="subtitle">Junior QA Engineer (Manual / API / Web / Mobile)</p>
-                    <p class="location"><i class="fas fa-map-marker-alt"></i> Санкт-Петербург (м. Гражданский проспект) | Готов к переезду в Москву & командировкам</p>
-                </div>
-            </div>
-            <div class="contacts">
-                <a href="tel:+79207757230" class="btn contact-link"><i class="fas fa-phone"></i> +7 (920) 775-72-30</a>
-                <a href="https://t.me/Makcim_Vi" target="_blank" class="btn contact-link Telegram"><i class="fab fa-telegram"></i> @Makcim_Vi</a>
-                <a href="mailto:makcshilovscy@mail.ru" class="btn contact-link"><i class="fas fa-envelope"></i> makcshilovscy@mail.ru</a>
-            </div>
-        </div>
-    </header>
 
-    <main class="container">
-        <!-- Блок статистики обучения и стажировок -->
-        <section class="stats-grid">
-            <div class="stat-card">
-                <h3>Обучение (QA Studio)</h3>
-                <div class="stat-value">269 ч.</div>
+    <div class="container">
+        
+        <header class="profile-card">
+            <img src="avatar.png" alt="Максим Шиловский" class="profile-avatar">
+            <div class="profile-info">
+                <h1>Максим Шиловский</h1>
+                <div class="subtitle">Junior QA Engineer</div>
+                <p class="bio">
+                    Сертифицированный специалист по ручному и автоматизированному тестированию веб- и бэкенд-приложений. 
+                    Вошёл в <strong>шорт-лист лучших выпускников</strong> своего потока в QA Studio. 
+                    Имею подтвержденный практический опыт стажировок в реальных проектах длительностью более 120 часов. 
+                    Нацелен на обеспечение высокого качества программных продуктов через применение современных практик тест-дизайна.
+                </p>
             </div>
-            <div class="stat-card">
-                <h3>Стажировка (НИУ ВШЭ)</h3>
-                <div class="stat-value">120 ч.</div>
-            </div>
-            <div class="stat-card">
-                <h3>Стажировка (Авто Маршал)</h3>
-                <div class="stat-value">72 ч.</div>
-            </div>
-            <div class="stat-card">
-                <h3>Общий коммерческий опыт</h3>
-                <div class="stat-value" id="experience-counter">1 год +</div>
+        </header>
+
+        <section>
+            <h2>Технологический стек & Инструменты</h2>
+            <div class="skills-grid">
+                <div class="skill-item">REST / SOAP API</div>
+                <div class="skill-item">PostgreSQL / Redis</div>
+                <div class="skill-item">MongoDB</div>
+                <div class="skill-item">Charles / Снифферы</div>
+                <div class="skill-item">Swagger / Postman</div>
+                <div class="skill-item">Kibana / Grafana</div>
+                <div class="skill-item">Sentry / Jaeger</div>
+                <div class="skill-item">Apache Kafka</div>
+                <div class="skill-item">Тест-дизайн / Документация</div>
+                <div class="skill-item">Работа с логами Linux</div>
+                <div class="skill-item">HTML5 / CSS3 Basics</div>
+                <div class="skill-item">Test IT / Yandex Tracker</div>
             </div>
         </section>
 
-        <section class="section">
-            <h2><i class="fas fa-user"></i> Обо мне</h2>
-            <p>QA Engineer с крепкой технической базой в тестировании Web, Backend (API) и мобильных приложений. Отлично понимаю клиент-серверную архитектуру, HTTP/HTTPS, REST/SOAP. Активно применяю AI-ассистентов для оптимизации тест-дизайна и тест-анализа. Соблюдаю культуру удаленной работы: всегда на связи и умею аргументированно приоритизировать баги.</p>
-        </section>
-
-        <section class="section">
-            <h2><i class="fas fa-tools"></i> Навыки & Технологический стек</h2>
-            <div class="skills-container">
-                <span class="skill-tag">REST API</span>
-                <span class="skill-tag">SOAP</span>
-                <span class="skill-tag">Postman</span>
-                <span class="skill-tag">SQL (PostgreSQL)</span>
-                <span class="skill-tag">NoSQL (MongoDB)</span>
-                <span class="skill-tag">Apache Kafka</span>
-                <span class="skill-tag">Jaeger</span>
-                <span class="skill-tag">Docker</span>
-                <span class="skill-tag">Kibana / Sentry / Grafana</span>
-                <span class="skill-tag">JavaScript (Cypress)</span>
-                <span class="skill-tag">Python (Pytest)</span>
-                <span class="skill-tag">Charles / App Metrica</span>
-                <span class="skill-tag">Яндекс.Трекер / Test IT</span>
-                <span class="skill-tag">Английский B2</span>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2><i class="fas fa-briefcase"></i> Опыт работы & Стажировки</h2>
-            
+        <section>
+            <h2>Опыт и стажировки</h2>
             <div class="timeline">
-                <!-- Текущее место работы -->
+                
                 <div class="timeline-item">
-                    <div class="timeline-badge current"></div>
-                    <div class="timeline-content">
-                        <h3>QA Studio <span class="period">Август 2025 — Настоящее время</span></h3>
-                        <p class="role">Junior QA Engineer</p>
-                        <ul>
-                            <li>Ежедневный таск-трекинг в Яндекс.Трекер в рамках микросервисной архитектуры (Stage).</li>
-                            <li>Тестирование REST и SOAP API в Postman (скрипты, параметризация, Mock Server).</li>
-                            <li>Валидация очередей сообщений через Apache Kafka и трейсинг запросов в Jaeger.</li>
-                            <li>Написание SQL и NoSQL запросов средней сложности (PostgreSQL, MongoDB).</li>
-                            <li>Мониторинг серверных логов в реальном времени через SSH (tail -f) и Docker logs.</li>
-                            <li>Тестирование мобилок (push, debug-сборки, deep links, Firebase).</li>
-                            <li>Разработка базовых автотестов на JS (Cypress, Page Object) и Python (Pytest, requests).</li>
-                        </ul>
-                    </div>
+                    <span class="timeline-badge">72 часа практики</span>
+                    <h3>QA Engineer (Стажёр)</h3>
+                    <div class="timeline-company">Проект «Джуны» — Школа дизайна НИУ ВШЭ</div>
+                    <p>Проведение функционального и регрессионного тестирования интерфейсов и внутренних сервисов платформы. Взаимодействие с командой разработки.</p>
                 </div>
 
-                <!-- Стажировка 2 -->
                 <div class="timeline-item">
-                    <div class="timeline-badge internship"></div>
-                    <div class="timeline-content">
-                        <h3>Школа дизайна НИУ ВШЭ <span class="period">Март 2026 — Май 2026 (3 мес.)</span></h3>
-                        <p class="role">Стажер QA Engineer (Проект «Джуны» — 120 часов)</p>
-                        <ul>
-                            <li>Провел полный цикл кроссбраузерного и кроссплатформенного тестирования раздела «Конкурсы».</li>
-                            <li>Локализовал и задокументировал в Яндекс.Трекер более 20 дефектов (5 из них — blocker).</li>
-                            <li>Разработал 8 UX/UI-рекомендаций (внедрение «Черновика» и лоадеров), снизивших отток пользователей.</li>
-                            <li>Проводил верификацию данных бэкенда через PostgreSQL (JOIN, агрегации) и валидацию API в Postman.</li>
-                        </ul>
-                    </div>
+                    <span class="timeline-badge">56 часов практики</span>
+                    <h3>QA Engineer (Стажёр)</h3>
+                    <div class="timeline-company">Проект «Джуны» — Авто Маршал</div>
+                    <p>Анализ требований, составление тестовых сценариев и чек-листов, локализация дефектов и составление баг-репортов.</p>
                 </div>
 
-                <!-- Стажировка 1 -->
                 <div class="timeline-item">
-                    <div class="timeline-badge internship"></div>
-                    <div class="timeline-content">
-                        <h3>Авто Маршал <span class="period">Январь 2026 — Февраль 2026 (2 мес.)</span></h3>
-                        <p class="role">Стажер QA Engineer (Проект «Джуны» — 72 часа)</p>
-                        <ul>
-                            <li>Функциональное и регрессионное тестирование веб-сервиса онлайн-бронирования автомобилей.</li>
-                            <li>Тестирование REST API (эндпоинты, статус-коды, JSON-схемы ответов в Postman).</li>
-                            <li>Симуляция нестабильного сетевого соединения (Throttling в DevTools, 3G/Edge) для проверки offline-режима.</li>
-                            <li>Участвовал в Daily Scrum стендапах и презентациях результатов на демо-встречах. Локализовал 15 багов.</li>
-                        </ul>
-                    </div>
+                    <span class="timeline-badge">269 часов обучения</span>
+                    <h3>Студент курса «Инженер по тестированию»</h3>
+                    <div class="timeline-company">Образовательная экосистема QA Studio</div>
+                    <p>Интенсивное освоение клиент-серверной архитектуры, баз данных, тест-дизайна и API. Успешно сдал все 10 учебных модулей на "зачёт / pass".</p>
                 </div>
+
             </div>
         </section>
 
-        <!-- БЛОК СЕРТИФИКАТОВ И РЕКОМЕНДАЦИИ С ФОРМАТОМ .JPG -->
-        <section class="section">
-            <h2><i class="fas fa-certificate"></i> Сертификаты и рекомендации</h2>
-            <div class="certificates-grid">
-                <div class="cert-item recommendation-card">
-                    <img src="recommendation.JPG" alt="Рекомендательное письмо QA Studio">
-                    <p>Рекомендательное письмо от СЕО QA Studio</p>
+        <section>
+            <h2>Подтверждающие документы</h2>
+            <div class="cert-grid">
+                
+                <div class="cert-card" onclick="openModal('recommendation.JPG')">
+                    <div class="cert-img-wrapper"><img src="recommendation.JPG" alt="Рекомендательное письмо"></div>
+                    <div class="cert-title">Рекомендательное письмо (QA Studio)</div>
                 </div>
-                <div class="cert-item">
-                    <img src="cert_qa_ru.JPG" alt="Сертификат QA Studio (Русский)">
-                    <p>Курс QA Studio (Рус.) — 269 часов</p>
+
+                <div class="cert-card" onclick="openModal('cert_hse.JPG')">
+                    <div class="cert-img-wrapper"><img src="cert_hse.JPG" alt="Сертификат НИУ ВШЭ"></div>
+                    <div class="cert-title">Стажировка: Школа дизайна НИУ ВШЭ</div>
                 </div>
-                <div class="cert-item">
-                    <img src="cert_qa_en.JPG" alt="Сертификат QA Studio (English)">
-                    <p>Курс QA Studio (Eng.) — 269 часов</p>
+
+                <div class="cert-card" onclick="openModal('cert_automarshal.JPG')">
+                    <div class="cert-img-wrapper"><img src="cert_automarshal.JPG" alt="Сертификат Авто Маршал"></div>
+                    <div class="cert-title">Стажировка: Авто Маршал</div>
                 </div>
-                <div class="cert-item">
-                    <img src="cert_hse.JPG" alt="Стажировка НИУ ВШЭ">
-                    <p>Стажировка НИУ ВШЭ — 120 часов</p>
+
+                <div class="cert-card" onclick="openModal('cert_qa_ru.JPG')">
+                    <div class="cert-img-wrapper"><img src="cert_qa_ru.JPG" alt="Сертификат QA Studio RU"></div>
+                    <div class="cert-title">Базовый курс QA Studio (РУС)</div>
                 </div>
-                <div class="cert-item">
-                    <img src="cert_automarshal.JPG" alt="Стажировка Авто Маршал">
-                    <p>Стажировка Авто Маршал — 72 часа</p>
+
+                <div class="cert-card" onclick="openModal('cert_qa_en.JPG')">
+                    <div class="cert-img-wrapper"><img src="cert_qa_en.JPG" alt="Сертификат QA Studio EN"></div>
+                    <div class="cert-title">Basic Course QA Studio (ENG)</div>
                 </div>
+
             </div>
         </section>
-    </main>
 
-    <footer class="footer">
-        <p>© 2026 Шиловский Максим. Обновлено на основе актуального резюме от 13 июля 2026 г.</p>
-    </footer>
+    </div>
 
-    <script src="script.js"></script>
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+
+    <script>
+        function openModal(imgSrc) {
+            document.getElementById('imageModal').style.display = 'flex';
+            document.getElementById('modalImg').src = imgSrc;
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
